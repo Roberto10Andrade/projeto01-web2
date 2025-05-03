@@ -61,5 +61,3 @@ O sistema utiliza o terminal para interação, oferecendo um menu intuitivo com 
 4. Remover tarefa
 5. Filtrar tarefas
 6. Sair
-
-``` ```
