@@ -108,20 +108,39 @@ export class TaskManager {
     }
 
     async filterTasks(keyword) {
-        const tasks = await this.loadTasks();
-        const filteredTasks = tasks.filter(task => 
-            task.title.toLowerCase().includes(keyword.toLowerCase())
-        );
+        try {
+            const tasks = await this.loadTasks();
+            console.clear();
+            console.log(chalk.blue('\n=== Resultado da Busca ==='));
+            console.log(chalk.gray(`Palavra-chave: "${keyword}"`));
+            
+            const filteredTasks = tasks.filter(task => 
+                task.title.toLowerCase().includes(keyword.toLowerCase())
+            );
 
-        if (filteredTasks.length === 0) {
-            console.log(chalk.yellow('Nenhuma tarefa encontrada com essa palavra-chave.'));
-            return;
+            if (filteredTasks.length === 0) {
+                console.log(chalk.yellow('\nNenhuma tarefa encontrada com essa palavra-chave.'));
+                console.log(chalk.green('\nPressione qualquer tecla para continuar...'));
+                readlineSync.keyInPause();
+                return;
+            }
+
+            console.log(chalk.gray(`\nTotal de tarefas encontradas: ${filteredTasks.length}`));
+            
+            filteredTasks.forEach(task => {
+                const status = task.completed ? chalk.green('✓') : chalk.red('✗');
+                const date = new Date(task.createdAt).toLocaleString();
+                console.log(chalk.blue(`\nTarefa #${task.id}`));
+                console.log(`Status: ${status}`);
+                console.log(`Título: ${task.title}`);
+                console.log(`Data de criação: ${date}`);
+                console.log(chalk.gray('-------------------'));
+            });
+            
+            console.log(chalk.green('\nPressione qualquer tecla para continuar...'));
+            readlineSync.keyInPause();
+        } catch (error) {
+            console.error(chalk.red('Erro ao filtrar tarefas:', error));
         }
-
-        filteredTasks.forEach(task => {
-            const status = task.completed ? chalk.green('✓') : chalk.red('✗');
-            const date = new Date(task.createdAt).toLocaleString();
-            console.log(`${status} [${task.id}] ${task.title} (Criada em: ${date})`);
-        });
     }
 }
