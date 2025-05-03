@@ -62,12 +62,4 @@ O sistema utiliza o terminal para interação, oferecendo um menu intuitivo com 
 5. Filtrar tarefas
 6. Sair
 
-📁 Estrutura do Projeto
-projeto01-web2/
-│
-├── index.js          # Arquivo principal com interface do usuário
-├── taskManager.js    # Classe de gerenciamento de tarefas
-├── package.json      # Dependências e configurações
-└── README.md         # Documentação
-
 ``` ```
