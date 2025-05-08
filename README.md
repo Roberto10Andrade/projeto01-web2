@@ -7,11 +7,6 @@ Um sistema de gerenciamento de tarefas via terminal desenvolvido em Node.js, per
 
 ## ✨ Funcionalidades
 
-- ➕ **Adicionar Tarefas**
-  - Título personalizado
-  - Categorização (Trabalho, Estudo, Pessoal, Outros)
-  - Níveis de prioridade (Alta, Media, Baixa)
-
 - 📋 **Gerenciar Tarefas**
   - Listar todas as tarefas
   - Marcar como completa
